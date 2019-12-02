@@ -1,0 +1,36 @@
+{% block body %}
+    <h1>Reclamations list</h1>
+    <input  type="text" id="subject"  >
+    <table >
+        <thead>
+        <th>Id</th>
+        <th>subject</th>
+        <th>object</th>
+        <th>username</th>
+        </thead>
+        <tbody>
+
+
+        {% for reclamation in reclamations %}
+
+            <tr>
+                <td>{{ reclamation.id }}</td>
+                <td>{{ reclamation.subject }}</td>
+                <td>{{ reclamation.object }}</td>
+                <td>{{ app.user.username }}</td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+
+        <tbody id="tb">
+
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('reclamation_new') }}">Create a new reclamation</a>
+        </li>
+    </ul>
+{% endblock %}
