@@ -1,0 +1,69 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<body>
+
+
+<div class="wrapper">
+
+    <div class="sign-in-page">
+        <div class="signin-popup">
+            <div class="signin-pop">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="cmp-info">
+                            <div class="cm-logo">
+                                <img src="{{ asset('images/cm-logo.png') }}" alt="">
+                                <p>Workwise,  is a global freelancing platform and social networking where businesses and independent professionals connect and collaborate remotely</p>
+                            </div><!--cm-logo end-->
+                            <img src="{{ asset('images/cm-main-img.png') }}" alt="">
+                        </div><!--cmp-info end-->
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="login-sec">
+
+                            <ul class="sign-control">
+                                <a class="btn btn-danger" href="#" title="">Sign up</a>
+                                <a class="btn btn-outline-danger" href="{{ path('fos_user_security_login') }}">Sign in</a>
+                            </ul>
+
+                            <div class="sign_in_sec current" id="tab-1">
+
+                                <div class="dff-tab current" id="tab-1">
+                                    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+                                    <div class="row">
+                                        {{ form_widget(form) }}
+
+                                            <div class="col-lg-12 no-pdd">
+                                                <button type="submit" value="submit">Get Started</button>
+                                            </div>
+                                        </div>
+                                    {{ form_end(form) }}
+                                </div><!--dff-tab end-->
+
+                            </div>
+                        </div><!--login-sec end-->
+                    </div>
+                </div>
+            </div><!--signin-pop end-->
+        </div><!--signin-popup end-->
+        <div class="footy-sec">
+            <div class="container">
+                <ul>
+                    <li><a href="help-center.html" title="">Help Center</a></li>
+                    <li><a href="about.html" title="">About</a></li>
+                    <li><a href="#" title="">Privacy Policy</a></li>
+                    <li><a href="#" title="">Community Guidelines</a></li>
+                    <li><a href="#" title="">Cookies Policy</a></li>
+                    <li><a href="#" title="">Career</a></li>
+                    <li><a href="forum.html" title="">Forum</a></li>
+                    <li><a href="#" title="">Language</a></li>
+                    <li><a href="#" title="">Copyright Policy</a></li>
+                </ul>
+                <p><img src="{{ asset('images/copy-icon.png') }}" alt="">Copyright 2019</p>
+            </div>
+        </div><!--footy-sec end-->
+    </div><!--sign-in-page end-->
+
+
+</div><!--theme-layout end-->
+
+</body>

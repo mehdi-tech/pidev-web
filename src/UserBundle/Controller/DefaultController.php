@@ -11,10 +11,20 @@ class DefaultController extends Controller
         return $this->redirectToRoute('index');
     }
 
+    public function accountSettingsAction() {
+        return $this->render('@User/Default/profile-account-setting.html.twig');
+    }
+
+    public function showProfileAction() {
+        return $this->render('@User/Default/my-profile-feed.html.twig');
+    }
+
+    public function postOverviewAction() {
+
+    }
+
     public function redirectAction()
     {
-
-
 
     }
 }

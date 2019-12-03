@@ -5,3 +5,12 @@ user_homepage:
 redirect_login:
     path: /redirect
     defaults: { _controller: UserBundle:Default:redirect }
+
+
+account_settings:
+    path: /account-settings
+    defaults: { _controller: UserBundle:Default:accountSettings }
+
+account_profile:
+    path: /profile
+    defaults: { _controller: UserBundle:Default:showProfile }
