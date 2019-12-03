@@ -4891,7 +4891,7 @@ $response = $event->getResponse();
 if (!$response instanceof Response) {
 $msg = sprintf('The controller must return a response (%s given).', $this->varToString($response));
 if (null === $response) {
-$msg .=' Did you forget to add a return statement somewhere in your controller?';
+$msg .=' Did you forget to add.html.twig a return statement somewhere in your controller?';
 }
 throw new \LogicException($msg);
 }
@@ -5348,7 +5348,7 @@ private $eventDispatcher;
 public function __construct($providers, $eraseCredentials = true)
 {
 if (!$providers) {
-throw new \InvalidArgumentException('You must at least add one authentication provider.');
+throw new \InvalidArgumentException('You must at least add.html.twig one authentication provider.');
 }
 $this->providers = $providers;
 $this->eraseCredentials = (bool) $eraseCredentials;
@@ -6351,7 +6351,7 @@ return $this->extensions;
 public function addTokenParser(TokenParserInterface $parser)
 {
 if ($this->extensionInitialized) {
-throw new \LogicException('Unable to add a token parser as extensions have already been initialized.');
+throw new \LogicException('Unable to add.html.twig a token parser as extensions have already been initialized.');
 }
 $this->staging->addTokenParser($parser);
 }
@@ -6375,7 +6375,7 @@ return $tags;
 public function addNodeVisitor(NodeVisitorInterface $visitor)
 {
 if ($this->extensionInitialized) {
-throw new \LogicException('Unable to add a node visitor as extensions have already been initialized.');
+throw new \LogicException('Unable to add.html.twig a node visitor as extensions have already been initialized.');
 }
 $this->staging->addNodeVisitor($visitor);
 }
@@ -6398,7 +6398,7 @@ $name = $filter->getName();
 @trigger_error(sprintf('Passing a name as a first argument to the %s method is deprecated since version 1.21. Pass an instance of "Twig_SimpleFilter" instead when defining filter "%s".', __METHOD__, $name), E_USER_DEPRECATED);
 }
 if ($this->extensionInitialized) {
-throw new \LogicException(sprintf('Unable to add filter "%s" as extensions have already been initialized.', $name));
+throw new \LogicException(sprintf('Unable to add.html.twig filter "%s" as extensions have already been initialized.', $name));
 }
 $this->staging->addFilter($name, $filter);
 }
@@ -6450,7 +6450,7 @@ $name = $test->getName();
 @trigger_error(sprintf('Passing a name as a first argument to the %s method is deprecated since version 1.21. Pass an instance of "Twig_SimpleTest" instead when defining test "%s".', __METHOD__, $name), E_USER_DEPRECATED);
 }
 if ($this->extensionInitialized) {
-throw new \LogicException(sprintf('Unable to add test "%s" as extensions have already been initialized.', $name));
+throw new \LogicException(sprintf('Unable to add.html.twig test "%s" as extensions have already been initialized.', $name));
 }
 $this->staging->addTest($name, $test);
 }
@@ -6493,7 +6493,7 @@ $name = $function->getName();
 @trigger_error(sprintf('Passing a name as a first argument to the %s method is deprecated since version 1.21. Pass an instance of "Twig_SimpleFunction" instead when defining function "%s".', __METHOD__, $name), E_USER_DEPRECATED);
 }
 if ($this->extensionInitialized) {
-throw new \LogicException(sprintf('Unable to add function "%s" as extensions have already been initialized.', $name));
+throw new \LogicException(sprintf('Unable to add.html.twig function "%s" as extensions have already been initialized.', $name));
 }
 $this->staging->addFunction($name, $function);
 }

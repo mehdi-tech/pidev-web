@@ -13,9 +13,29 @@ profil_new:
     defaults: { _controller: "UserBundle:Profil:new" }
     methods:  [GET, POST]
 
+experience_add:
+    path:     /experience
+    defaults: { _controller: "UserBundle:Profil:showAddExperience" }
+    methods:  [GET, POST]
+
+education_add:
+    path:     /education
+    defaults: { _controller: "UserBundle:Profil:showAddEducation" }
+    methods:  [GET, POST]
+
+education_edit:
+    path:     /education/{id}/edit
+    defaults: { _controller: "UserBundle:Profil:showEditEducation" }
+    methods:  [GET, POST]
+
 profil_edit:
     path:     /{id}/edit
-    defaults: { _controller: "UserBundle:Profil:edit" }
+    defaults: { _controller: "UserBundle:Profil:showEditOverview" }
+    methods:  [GET, POST]
+
+experience_edit:
+    path:     /{id}/experience/edit
+    defaults: { _controller: "UserBundle:Profil:showEditExperience" }
     methods:  [GET, POST]
 
 profil_delete:

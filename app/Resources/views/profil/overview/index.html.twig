@@ -1,4 +1,4 @@
-
+{% extends 'base.html.twig' %}
 
 {% block body %}
     <h1>Profils list</h1>
@@ -13,23 +13,23 @@
             </tr>
         </thead>
         <tbody>
-        {#{% for profil in profils %}#}
-            {#<tr>#}
-                {#<td><a href="{{ path('profil_show', { 'id': profil.id }) }}">{{ profil.id }}</a></td>#}
-                {#<td>{{ profil.overview }}</td>#}
-                {#<td>{{ profil.location }}</td>#}
-                {#<td>#}
-                    {#<ul>#}
-                        {#<li>#}
-                            {#<a href="{{ path('profil_show', { 'id': profil.id }) }}">show</a>#}
-                        {#</li>#}
-                        {#<li>#}
-                            {#<a href="{{ path('profil_edit', { 'id': profil.id }) }}">edit</a>#}
-                        {#</li>#}
-                    {#</ul>#}
-                {#</td>#}
-            {#</tr>#}
-        {#{% endfor %}#}
+        {% for profil in profils %}
+            <tr>
+                <td><a href="{{ path('profil_show', { 'id': profil.id }) }}">{{ profil.id }}</a></td>
+                <td>{{ profil.overview }}</td>
+                <td>{{ profil.location }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('profil_show', { 'id': profil.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('profil_edit', { 'id': profil.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
 

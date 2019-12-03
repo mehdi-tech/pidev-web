@@ -350,7 +350,7 @@ and dependencies (minified).
 				alwaysTriggerOffsets:true
 			}
 			/*
-			add scrollbar(s) on all elements matching the current selector, now and in the future 
+			add.html.twig scrollbar(s) on all elements matching the current selector, now and in the future
 			values: boolean, string 
 			string values: "on" (enable), "once" (disable after first invocation), "off" (disable)
 			liveSelector values: string (selector)
@@ -488,7 +488,7 @@ and dependencies (minified).
 							_theme(o); /* theme-specific options */
 						}
 						
-						_pluginMarkup.call(this); /* add plugin markup */
+						_pluginMarkup.call(this); /* add.html.twig plugin markup */
 						
 						if(d && o.callbacks.onCreate && typeof o.callbacks.onCreate==="function"){o.callbacks.onCreate.call(this);} /* callbacks: onCreate */
 						
@@ -741,7 +741,7 @@ and dependencies (minified).
 						
 						_scrollbarVisibility.call(this,true); /* show/hide scrollbar(s) */
 						
-						$this.addClass(classes[3]); /* add disable class */
+						$this.addClass(classes[3]); /* add.html.twig disable class */
 					
 					}
 					
@@ -789,7 +789,7 @@ and dependencies (minified).
 						scrollbar.remove(); /* remove scrollbar(s) first (those can be either inside or outside plugin's inner wrapper) */
 						mCSB_container.find("img."+classes[2]).removeClass(classes[2]); /* remove loaded images flag */
 						mCustomScrollBox.replaceWith(mCSB_container.contents()); /* replace plugin's inner wrapper with the original content */
-						/* remove plugin classes from the element and add destroy class */
+						/* remove plugin classes from the element and add.html.twig destroy class */
 						$this.removeClass(pluginNS+" _"+pluginPfx+"_"+d.idx+" "+classes[6]+" "+classes[7]+" "+classes[5]+" "+classes[3]).addClass(classes[4]);
 					
 					}
@@ -887,7 +887,7 @@ and dependencies (minified).
 				mCustomScrollBox.addClass("mCSB_inside").append(scrollbars);
 				mCSB_container.wrap(contentWrapper);
 			}
-			_scrollButtons.call(this); /* add scrollbar buttons */
+			_scrollButtons.call(this); /* add.html.twig scrollbar buttons */
 			/* minimum dragger length */
 			var mCSB_dragger=[$("#mCSB_"+d.idx+"_dragger_vertical"),$("#mCSB_"+d.idx+"_dragger_horizontal")];
 			mCSB_dragger[0].css("min-height",mCSB_dragger[0].height());
@@ -2413,14 +2413,14 @@ and dependencies (minified).
 	$[pluginNS].defaults=defaults;
 	
 	/* 
-	add window object (window.mCustomScrollbar) 
+	add.html.twig window object (window.mCustomScrollbar)
 	usage: if(window.mCustomScrollbar){console.log("custom scrollbar plugin loaded");}
 	*/
 	window[pluginNS]=true;
 	
 	$(window).bind("load",function(){
 		
-		$(defaultSelector)[pluginNS](); /* add scrollbars automatically on default selector */
+		$(defaultSelector)[pluginNS](); /* add.html.twig scrollbars automatically on default selector */
 		
 		/* extend jQuery expressions */
 		$.extend($.expr[":"],{

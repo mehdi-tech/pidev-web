@@ -152,9 +152,48 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             }
             not_profil_new:
 
+            // experience_add
+            if ('/profil/experience' === $pathinfo) {
+                $ret = array (  '_controller' => 'UserBundle\\Controller\\ProfilController::showAddExperienceAction',  '_route' => 'experience_add',);
+                if (!in_array($canonicalMethod, ['GET', 'POST'])) {
+                    $allow = array_merge($allow, ['GET', 'POST']);
+                    goto not_experience_add;
+                }
+
+                return $ret;
+            }
+            not_experience_add:
+
+            if (0 === strpos($pathinfo, '/profil/education')) {
+                // education_add
+                if ('/profil/education' === $pathinfo) {
+                    $ret = array (  '_controller' => 'UserBundle\\Controller\\ProfilController::showAddEducationAction',  '_route' => 'education_add',);
+                    if (!in_array($canonicalMethod, ['GET', 'POST'])) {
+                        $allow = array_merge($allow, ['GET', 'POST']);
+                        goto not_education_add;
+                    }
+
+                    return $ret;
+                }
+                not_education_add:
+
+                // education_edit
+                if (preg_match('#^/profil/education/(?P<id>[^/]++)/edit$#sD', $pathinfo, $matches)) {
+                    $ret = $this->mergeDefaults(array_replace($matches, ['_route' => 'education_edit']), array (  '_controller' => 'UserBundle\\Controller\\ProfilController::showEditEducationAction',));
+                    if (!in_array($canonicalMethod, ['GET', 'POST'])) {
+                        $allow = array_merge($allow, ['GET', 'POST']);
+                        goto not_education_edit;
+                    }
+
+                    return $ret;
+                }
+                not_education_edit:
+
+            }
+
             // profil_edit
             if (preg_match('#^/profil/(?P<id>[^/]++)/edit$#sD', $pathinfo, $matches)) {
-                $ret = $this->mergeDefaults(array_replace($matches, ['_route' => 'profil_edit']), array (  '_controller' => 'UserBundle\\Controller\\ProfilController::editAction',));
+                $ret = $this->mergeDefaults(array_replace($matches, ['_route' => 'profil_edit']), array (  '_controller' => 'UserBundle\\Controller\\ProfilController::showEditOverviewAction',));
                 if (!in_array($canonicalMethod, ['GET', 'POST'])) {
                     $allow = array_merge($allow, ['GET', 'POST']);
                     goto not_profil_edit;
@@ -163,6 +202,18 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
                 return $ret;
             }
             not_profil_edit:
+
+            // experience_edit
+            if (preg_match('#^/profil/(?P<id>[^/]++)/experience/edit$#sD', $pathinfo, $matches)) {
+                $ret = $this->mergeDefaults(array_replace($matches, ['_route' => 'experience_edit']), array (  '_controller' => 'UserBundle\\Controller\\ProfilController::showEditExperienceAction',));
+                if (!in_array($canonicalMethod, ['GET', 'POST'])) {
+                    $allow = array_merge($allow, ['GET', 'POST']);
+                    goto not_experience_edit;
+                }
+
+                return $ret;
+            }
+            not_experience_edit:
 
             // profil_delete
             if (preg_match('#^/profil/(?P<id>[^/]++)/delete$#sD', $pathinfo, $matches)) {
@@ -244,11 +295,6 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return $ret;
         }
         not_user_homepage:
-
-        // show
-        if ('/show' === $pathinfo) {
-            return array (  '_controller' => 'UserBundle\\Controller\\ProfilController::indexOverViewAction',  '_route' => 'show',);
-        }
 
         if (0 === strpos($pathinfo, '/re')) {
             // redirect_login

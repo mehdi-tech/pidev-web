@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * experience
  *
  * @ORM\Table(name="experience")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="UserBundle\Repository\experienceRepository")
  */
 class experience
 {
@@ -48,6 +48,28 @@ class experience
      * @ORM\Column(name="description", type="text")
      */
     private $description;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\Profil",inversedBy="id")
+     */
+    private $profil;
+
+    /**
+     * @return mixed
+     */
+    public function getProfil()
+    {
+        return $this->profil;
+    }
+
+    /**
+     * @param mixed $profil
+     */
+    public function setProfil($profil)
+    {
+        $this->profil = $profil;
+    }
+
 
 
     /**

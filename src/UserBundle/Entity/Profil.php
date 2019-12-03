@@ -17,6 +17,12 @@ class Profil
 {
 
 
+    public function __construct()
+    {
+        $this->experience = new ArrayCollection();
+        $this->education = new ArrayCollection();
+        $this->skills = new ArrayCollection();
+    }
     /**
      * @var int
      *
@@ -35,13 +41,13 @@ class Profil
 
     /**
      *
-     * @ORM\OneToMany(targetEntity="UserBundle\Entity\experience",mappedBy="id")
+     * @ORM\OneToMany(targetEntity="UserBundle\Entity\experience",mappedBy="profil")
      */
     private $experience;
 
     /**
      *
-     * @ORM\OneToMany(targetEntity="UserBundle\Entity\education",mappedBy="id")
+     * @ORM\OneToMany(targetEntity="UserBundle\Entity\education",mappedBy="profil")
      */
     private $education;
 
@@ -59,16 +65,13 @@ class Profil
     private $skills;
 
     /**
-     * @var
      * @ORM\OneToOne(targetEntity="UserBundle\Entity\Users",inversedBy="profil")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
 
 
-    public function __construct($skills)
-    {
-        $this->skills = new ArrayCollection();
-    }
+
 
 
     /**
@@ -112,7 +115,7 @@ class Profil
      *
      * @return Profil
      */
-    public function setExperience($experience)
+    public function setExperience(ArrayCollection $experience)
     {
         $this->experience = $experience;
     
@@ -136,7 +139,7 @@ class Profil
      *
      * @return Profil
      */
-    public function setEducation($education)
+    public function setEducation(ArrayCollection $education)
     {
         $this->education = $education;
     
@@ -184,19 +187,19 @@ class Profil
      *
      * @return Collection|Skill[]
      */
-    public function getSkills(): Collection
+    public function getSkills()
     {
         return $this->skills;
     }
 
-    public function addSkill(Skill $skill): self
+    public function addSkill(Skill $skill)
     {
         if (!$this->skills->contains($skill)) {
             $this->skills[] = $skill;
         }
         return $this;
     }
-    public function removeTag(Skill $skill): self
+    public function removeTag(Skill $skill)
     {
         if ($this->skills->contains($skill)) {
             $this->skills->removeElement($skill);

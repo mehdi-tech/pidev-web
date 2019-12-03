@@ -10,4 +10,5 @@ namespace UserBundle\Repository;
  */
 class ProfilRepository extends \Doctrine\ORM\EntityRepository
 {
+
 }

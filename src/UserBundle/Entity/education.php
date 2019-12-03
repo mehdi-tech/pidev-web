@@ -56,6 +56,27 @@ class education
      */
     private $description;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\Profil",inversedBy="id")
+     */
+    private $profil;
+
+    /**
+     * @return mixed
+     */
+    public function getProfil()
+    {
+        return $this->profil;
+    }
+
+    /**
+     * @param mixed $profil
+     */
+    public function setProfil($profil)
+    {
+        $this->profil = $profil;
+    }
+
 
     /**
      * Get id

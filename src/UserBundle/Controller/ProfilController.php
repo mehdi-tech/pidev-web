@@ -2,9 +2,14 @@
 
 namespace UserBundle\Controller;
 
+use UserBundle\Entity\education;
 use UserBundle\Entity\Profil;
+use UserBundle\Entity\experience;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use UserBundle\Form\EducationType;
+use UserBundle\Form\ExperienceType;
+use UserBundle\Form\OverviewType;
 
 /**
  * Profil controller.
@@ -30,20 +35,20 @@ class ProfilController extends Controller
     public function indexOverViewAction()
     {
         $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        if (!$user) {
+            return $this->redirectToRoute('fos_user_security_login');
+        }
         $user_id = $user->getId();
 
         $em = $this->getDoctrine()->getManager();
 
-        $profils = $em->getRepository('UserBundle:Profil')->findOneBy(array('user_id'=> $user_id));
-        dump($profils);
+        $profil = $em->getRepository('UserBundle:Profil')->findOneBy(array('user'=> $user_id));
 
-        return $this->render('profil/overview/index.html.twig',array('user' => $user));
+
+
+        return $this->render('@User/Default/my-profile-feed.html.twig',array('profil' => $profil));
     }
 
-    public function newOverviewAction(Request $request) {
-        $profil = new Profil();
-
-    }
 
     /**
      * Creates a new profil entity.
@@ -82,6 +87,121 @@ class ProfilController extends Controller
             'delete_form' => $deleteForm->createView(),
         ));
     }
+
+    function showAddExperienceAction(Request $request) {
+        $experience = new experience();
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        if (!$user) {
+            return $this->redirectToRoute('fos_user_security_login');
+        }
+        $user_id = $user->getId();
+
+        $profil = $em->getRepository('UserBundle:Profil')->findOneBy(array('user'=> $user_id));
+
+        $experience->setProfil($profil);
+
+        $form = $this->createForm(ExperienceType::class,$experience);
+
+        if (!$experience) {
+            throw $this->createNotFoundException('Unable to find Product entity.');
+        }
+
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+
+            $em->persist($experience);
+            $em->flush();
+            return $this->redirectToRoute('profil_index');
+        }
+        return $this->render('@User/Default/experience/add.html.twig',array('form' => $form->createView()));
+    }
+    function showEditExperienceAction(Request $request,$id){
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('UserBundle:experience')->find($id);
+
+        $form = $this->createForm(ExperienceType::class,$entity);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Product entity.');
+        }
+
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+
+            $em->flush();
+            return $this->redirectToRoute('profil_index');
+        }
+        return $this->render('@User/Default/experience/edit.html.twig',array('form' => $form->createView()));
+    }
+
+    function showEditEducationAction(Request $request,$id){
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('UserBundle:education')->find($id);
+
+        $form = $this->createForm(EducationType::class,$entity);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Product entity.');
+        }
+
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+
+            $em->flush();
+            return $this->redirectToRoute('profil_index');
+        }
+        return $this->render('@User/Default/education/edit.html.twig',array('form' => $form->createView()));
+    }
+
+    function showEditOverviewAction(Request $request,$id){
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('UserBundle:Profil')->find($id);
+
+        $form = $this->createForm(OverviewType::class,$entity);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Product entity.');
+        }
+
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+
+            $em->flush();
+            return $this->redirectToRoute('profil_index');
+        }
+        return $this->render('@User/Default/overview/edit.html.twig',array('form' => $form->createView()));
+    }
+
+    function showAddEducationAction(Request $request) {
+        $education = new education();
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        if (!$user) {
+            return $this->redirectToRoute('fos_user_security_login');
+        }
+        $user_id = $user->getId();
+
+        $profil = $em->getRepository('UserBundle:Profil')->findOneBy(array('user'=> $user_id));
+
+        $education->setProfil($profil);
+
+        $form = $this->createForm(EducationType::class,$education);
+
+        if (!$education) {
+            throw $this->createNotFoundException('Unable to find Product entity.');
+        }
+
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+
+            $em->persist($education);
+            $em->flush();
+            return $this->redirectToRoute('profil_index');
+        }
+        return $this->render('@User/Default/education/add.html.twig',array('form' => $form->createView()));
+    }
+
 
     /**
      * Displays a form to edit an existing profil entity.

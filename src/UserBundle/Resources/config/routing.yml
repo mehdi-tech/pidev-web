@@ -6,9 +6,6 @@ user_homepage:
     path:     /
     defaults: { _controller: UserBundle:Default:index }
 
-show:
-    path:     /show
-    defaults: { _controller: UserBundle:Profil:indexOverView }
 
 redirect_login:
     path: /redirect

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% block navbar %}{{ parent() }}{% endblock %}
+{% block main %}
+    <br><br><br><br><br><br><br>
+    <div class="container">
+        {{ form_start(form) }}
+        <div class="form-group">
+            <label for="inputAddress">Title</label>
+            {{ form_widget(form.title,{'attr':{'class':'form-control'}} ) }}
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Start Date</label>
+                {{ form_widget(form.startDate,{'attr':{'class':'form-control'}} ) }}
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputPassword4">End Date</label>
+                {{ form_widget(form.endDate,{'attr':{'class':'form-control'}} ) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Description</label>
+            {{ form_widget(form.description,{'attr':{'class':'form-control'}} ) }}
+        </div>
+
+        {{ form_widget(form.save,{'attr':{'class':'btn btn-danger'}} ) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+{% block postproject %} {% endblock %}
+{% block postjob %} {% endblock %}

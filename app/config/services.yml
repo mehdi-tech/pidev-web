@@ -5,6 +5,8 @@ parameters:
 
 services:
     # default configuration for services in *this* file
+
+
     _defaults:
         # automatically injects dependencies in your services
         autowire: true
@@ -38,7 +40,7 @@ services:
         autowire: true
         tags:
             - { name: kernel.event_subscriber }
-    # add more services, or override services that need manual wiring
+    # add.html.twig more services, or override services that need manual wiring
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'

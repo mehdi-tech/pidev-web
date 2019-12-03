@@ -38,11 +38,8 @@ class Users extends BaseUser
      */
     protected $tel;
 
-
     /**
-     * @Doctrine\ORM\Mapping\Column(type="string", nullable=true)
-     * @ORM\OneToOne(targetEntity="UserBundle\Entity\Profil",mappedBy="id")
-     *
+     * @ORM\OneToOne(targetEntity="UserBundle\Entity\Profil")
      */
     protected $profil;
 
@@ -62,10 +59,13 @@ class Users extends BaseUser
         $this->profil = $profil;
     }
 
+
+
+
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
@@ -73,7 +73,7 @@ class Users extends BaseUser
     /**
      * @param int $id
      */
-    public function setId(int $id)
+    public function setId( $id)
     {
         $this->id = $id;
     }
@@ -89,7 +89,7 @@ class Users extends BaseUser
     /**
      * @param string $fullname
      */
-    public function setFullname(string $fullname)
+    public function setFullname($fullname)
     {
         $this->fullname = $fullname;
     }
@@ -105,7 +105,7 @@ class Users extends BaseUser
     /**
      * @param string $adresse
      */
-    public function setAdresse(string $adresse)
+    public function setAdresse($adresse)
     {
         $this->adresse = $adresse;
     }
@@ -121,7 +121,7 @@ class Users extends BaseUser
     /**
      * @param string $tel
      */
-    public function setTel(string $tel)
+    public function setTel($tel)
     {
         $this->tel = $tel;
     }
