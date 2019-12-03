@@ -1752,6 +1752,14 @@
         <argument>2048</argument>
       </call>
       <call method="addListener">
+        <argument>console.command</argument>
+        <argument type="collection">
+          <argument type="service" id="debug.debug_handlers_listener"/>
+          <argument>configure</argument>
+        </argument>
+        <argument>2048</argument>
+      </call>
+      <call method="addListener">
         <argument>kernel.request</argument>
         <argument type="collection">
           <argument type="service" id="router_listener"/>
@@ -3716,17 +3724,15 @@
         <argument type="service" id="doctrine.orm.container_repository_factory"/>
       </call>
     </service>
-    <service id="doctrine.orm.default_yml_metadata_driver" class="Doctrine\ORM\Mapping\Driver\SimplifiedYamlDriver" public="false">
+    <service id="doctrine.orm.default_annotation_metadata_driver" class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
+      <argument type="service" id="annotations.cached_reader"/>
       <argument type="collection">
-        <argument key="C:\Users\Anis-PC\Documents\pidev-web\src\UserBundle\Resources\config\doctrine">UserBundle\Entity</argument>
+        <argument>C:\Users\Anis-PC\Documents\pidev-web\src\UserBundle\Entity</argument>
       </argument>
-      <call method="setGlobalBasename">
-        <argument>mapping</argument>
-      </call>
     </service>
     <service id="doctrine.orm.default_metadata_driver" class="Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain" public="false">
       <call method="addDriver">
-        <argument type="service" id="doctrine.orm.default_yml_metadata_driver"/>
+        <argument type="service" id="doctrine.orm.default_annotation_metadata_driver"/>
         <argument>UserBundle\Entity</argument>
       </call>
       <call method="addDriver">

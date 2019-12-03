@@ -13,28 +13,60 @@ class Users extends BaseUser
 {
     /**
      * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
 
     /**
      * @var string
+     * @ORM\Column(name="fullname", type="string", length=255)
      */
     protected $fullname;
 
     /**
      * @var string
+     * @ORM\Column(name="adresse", type="string", length=255)
      */
     protected $adresse;
 
     /**
      * @var string
+     * @ORM\Column(name="tel", type="string", length=255)
      */
     protected $tel;
 
     /**
      * @return int
      */
-    public function getId()
+    /**
+     * @ORM\OneToOne(targetEntity="UserBundle\Entity\Profil")
+     *
+     */
+    protected $profil;
+
+    /**
+     * @return mixed
+     */
+    public function getProfil()
+    {
+        return $this->profil;
+    }
+
+    /**
+     * @param mixed $profil
+     */
+    public function setProfil($profil)
+    {
+        $this->profil = $profil;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
     {
         return $this->id;
     }
@@ -42,7 +74,7 @@ class Users extends BaseUser
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }
@@ -50,7 +82,7 @@ class Users extends BaseUser
     /**
      * @return string
      */
-    public function getFullname()
+    public function getFullname(): string
     {
         return $this->fullname;
     }
@@ -58,7 +90,7 @@ class Users extends BaseUser
     /**
      * @param string $fullname
      */
-    public function setFullname($fullname)
+    public function setFullname(string $fullname)
     {
         $this->fullname = $fullname;
     }
@@ -66,7 +98,7 @@ class Users extends BaseUser
     /**
      * @return string
      */
-    public function getAdresse()
+    public function getAdresse(): string
     {
         return $this->adresse;
     }
@@ -74,7 +106,7 @@ class Users extends BaseUser
     /**
      * @param string $adresse
      */
-    public function setAdresse($adresse)
+    public function setAdresse(string $adresse)
     {
         $this->adresse = $adresse;
     }
@@ -82,7 +114,7 @@ class Users extends BaseUser
     /**
      * @return string
      */
-    public function getTel()
+    public function getTel(): string
     {
         return $this->tel;
     }
@@ -90,16 +122,14 @@ class Users extends BaseUser
     /**
      * @param string $tel
      */
-    public function setTel($tel)
+    public function setTel(string $tel)
     {
         $this->tel = $tel;
     }
 
-    /**
-     * Get id
-     *
-     * @return int
-     */
+
+
+
 
 }
 

@@ -60,6 +60,7 @@
 /.web-server-pid
 
 # User-specific stuff
+.idea/*
 .idea/**/workspace.xml
 .idea/**/tasks.xml
 .idea/**/usage.statistics.xml
@@ -197,9 +198,6 @@ fabric.properties
 # Embedded web-server pid file
 /.web-server-pid
 
-### Symfony Patch ###
-/web/css/
-/web/js/
 
 ### Windows ###
 # Windows thumbnail cache files

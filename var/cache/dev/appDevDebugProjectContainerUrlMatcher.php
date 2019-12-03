@@ -107,6 +107,129 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
+        elseif (0 === strpos($pathinfo, '/profil')) {
+            // profil_index
+            if ('/profil' === $trimmedPathinfo) {
+                $ret = array (  '_controller' => 'UserBundle\\Controller\\ProfilController::indexAction',  '_route' => 'profil_index',);
+                if ('/' === substr($pathinfo, -1)) {
+                    // no-op
+                } elseif ('GET' !== $canonicalMethod) {
+                    goto not_profil_index;
+                } else {
+                    return array_replace($ret, $this->redirect($rawPathinfo.'/', 'profil_index'));
+                }
+
+                if (!in_array($canonicalMethod, ['GET'])) {
+                    $allow = array_merge($allow, ['GET']);
+                    goto not_profil_index;
+                }
+
+                return $ret;
+            }
+            not_profil_index:
+
+            // profil_show
+            if (preg_match('#^/profil/(?P<id>[^/]++)/show$#sD', $pathinfo, $matches)) {
+                $ret = $this->mergeDefaults(array_replace($matches, ['_route' => 'profil_show']), array (  '_controller' => 'UserBundle\\Controller\\ProfilController::showAction',));
+                if (!in_array($canonicalMethod, ['GET'])) {
+                    $allow = array_merge($allow, ['GET']);
+                    goto not_profil_show;
+                }
+
+                return $ret;
+            }
+            not_profil_show:
+
+            // profil_new
+            if ('/profil/new' === $pathinfo) {
+                $ret = array (  '_controller' => 'UserBundle\\Controller\\ProfilController::newAction',  '_route' => 'profil_new',);
+                if (!in_array($canonicalMethod, ['GET', 'POST'])) {
+                    $allow = array_merge($allow, ['GET', 'POST']);
+                    goto not_profil_new;
+                }
+
+                return $ret;
+            }
+            not_profil_new:
+
+            // profil_edit
+            if (preg_match('#^/profil/(?P<id>[^/]++)/edit$#sD', $pathinfo, $matches)) {
+                $ret = $this->mergeDefaults(array_replace($matches, ['_route' => 'profil_edit']), array (  '_controller' => 'UserBundle\\Controller\\ProfilController::editAction',));
+                if (!in_array($canonicalMethod, ['GET', 'POST'])) {
+                    $allow = array_merge($allow, ['GET', 'POST']);
+                    goto not_profil_edit;
+                }
+
+                return $ret;
+            }
+            not_profil_edit:
+
+            // profil_delete
+            if (preg_match('#^/profil/(?P<id>[^/]++)/delete$#sD', $pathinfo, $matches)) {
+                $ret = $this->mergeDefaults(array_replace($matches, ['_route' => 'profil_delete']), array (  '_controller' => 'UserBundle\\Controller\\ProfilController::deleteAction',));
+                if (!in_array($requestMethod, ['DELETE'])) {
+                    $allow = array_merge($allow, ['DELETE']);
+                    goto not_profil_delete;
+                }
+
+                return $ret;
+            }
+            not_profil_delete:
+
+            if (0 === strpos($pathinfo, '/profile')) {
+                // account_profile
+                if ('/profile' === $pathinfo) {
+                    return array (  '_controller' => 'UserBundle\\Controller\\DefaultController::showProfileAction',  '_route' => 'account_profile',);
+                }
+
+                // fos_user_profile_show
+                if ('/profile' === $trimmedPathinfo) {
+                    $ret = array (  '_controller' => 'fos_user.profile.controller:showAction',  '_route' => 'fos_user_profile_show',);
+                    if ('/' === substr($pathinfo, -1)) {
+                        // no-op
+                    } elseif ('GET' !== $canonicalMethod) {
+                        goto not_fos_user_profile_show;
+                    } else {
+                        return array_replace($ret, $this->redirect($rawPathinfo.'/', 'fos_user_profile_show'));
+                    }
+
+                    if (!in_array($canonicalMethod, ['GET'])) {
+                        $allow = array_merge($allow, ['GET']);
+                        goto not_fos_user_profile_show;
+                    }
+
+                    return $ret;
+                }
+                not_fos_user_profile_show:
+
+                // fos_user_profile_edit
+                if ('/profile/edit' === $pathinfo) {
+                    $ret = array (  '_controller' => 'fos_user.profile.controller:editAction',  '_route' => 'fos_user_profile_edit',);
+                    if (!in_array($canonicalMethod, ['GET', 'POST'])) {
+                        $allow = array_merge($allow, ['GET', 'POST']);
+                        goto not_fos_user_profile_edit;
+                    }
+
+                    return $ret;
+                }
+                not_fos_user_profile_edit:
+
+                // fos_user_change_password
+                if ('/profile/change-password' === $pathinfo) {
+                    $ret = array (  '_controller' => 'fos_user.change_password.controller:changePasswordAction',  '_route' => 'fos_user_change_password',);
+                    if (!in_array($canonicalMethod, ['GET', 'POST'])) {
+                        $allow = array_merge($allow, ['GET', 'POST']);
+                        goto not_fos_user_change_password;
+                    }
+
+                    return $ret;
+                }
+                not_fos_user_change_password:
+
+            }
+
+        }
+
         // user_homepage
         if ('' === $trimmedPathinfo) {
             $ret = array (  '_controller' => 'UserBundle\\Controller\\DefaultController::indexAction',  '_route' => 'user_homepage',);
@@ -246,58 +369,6 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         // account_settings
         if ('/account-settings' === $pathinfo) {
             return array (  '_controller' => 'UserBundle\\Controller\\DefaultController::accountSettingsAction',  '_route' => 'account_settings',);
-        }
-
-        if (0 === strpos($pathinfo, '/profile')) {
-            // account_profile
-            if ('/profile' === $pathinfo) {
-                return array (  '_controller' => 'UserBundle\\Controller\\DefaultController::showProfileAction',  '_route' => 'account_profile',);
-            }
-
-            // fos_user_profile_show
-            if ('/profile' === $trimmedPathinfo) {
-                $ret = array (  '_controller' => 'fos_user.profile.controller:showAction',  '_route' => 'fos_user_profile_show',);
-                if ('/' === substr($pathinfo, -1)) {
-                    // no-op
-                } elseif ('GET' !== $canonicalMethod) {
-                    goto not_fos_user_profile_show;
-                } else {
-                    return array_replace($ret, $this->redirect($rawPathinfo.'/', 'fos_user_profile_show'));
-                }
-
-                if (!in_array($canonicalMethod, ['GET'])) {
-                    $allow = array_merge($allow, ['GET']);
-                    goto not_fos_user_profile_show;
-                }
-
-                return $ret;
-            }
-            not_fos_user_profile_show:
-
-            // fos_user_profile_edit
-            if ('/profile/edit' === $pathinfo) {
-                $ret = array (  '_controller' => 'fos_user.profile.controller:editAction',  '_route' => 'fos_user_profile_edit',);
-                if (!in_array($canonicalMethod, ['GET', 'POST'])) {
-                    $allow = array_merge($allow, ['GET', 'POST']);
-                    goto not_fos_user_profile_edit;
-                }
-
-                return $ret;
-            }
-            not_fos_user_profile_edit:
-
-            // fos_user_change_password
-            if ('/profile/change-password' === $pathinfo) {
-                $ret = array (  '_controller' => 'fos_user.change_password.controller:changePasswordAction',  '_route' => 'fos_user_change_password',);
-                if (!in_array($canonicalMethod, ['GET', 'POST'])) {
-                    $allow = array_merge($allow, ['GET', 'POST']);
-                    goto not_fos_user_change_password;
-                }
-
-                return $ret;
-            }
-            not_fos_user_change_password:
-
         }
 
         // homepage

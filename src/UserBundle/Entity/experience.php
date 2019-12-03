@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * experience
  *
  * @ORM\Table(name="experience")
- * @ORM\Entity(repositoryClass="UserBundle\Repository\experienceRepository")
+ * @ORM\Entity
  */
 class experience
 {
@@ -45,7 +45,7 @@ class experience
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=255)
+     * @ORM\Column(name="description", type="text")
      */
     private $description;
 

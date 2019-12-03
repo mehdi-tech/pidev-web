@@ -2,16 +2,21 @@
 
 namespace UserBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use UserBundle\Entity\skills as Skill;
 
 /**
  * Profil
  *
  * @ORM\Table(name="profil")
- * @ORM\Entity(repositoryClass="UserBundle\Repository\ProfilRepository")
+ * @ORM\Entity
  */
 class Profil
 {
+
+
     /**
      * @var int
      *
@@ -29,16 +34,14 @@ class Profil
     private $overview;
 
     /**
-     * @var string
      *
-     * @ORM\Column(name="experience", type="string", length=255, nullable=true)
+     * @ORM\OneToMany(targetEntity="UserBundle\Entity\experience",mappedBy="id")
      */
     private $experience;
 
     /**
-     * @var string
      *
-     * @ORM\Column(name="education", type="string", length=255, nullable=true)
+     * @ORM\OneToMany(targetEntity="UserBundle\Entity\education",mappedBy="id")
      */
     private $education;
 
@@ -50,11 +53,16 @@ class Profil
     private $location;
 
     /**
-     * @var string
      *
-     * @ORM\Column(name="skills", type="string", length=255, nullable=true)
+     * @ORM\ManyToMany(targetEntity="UserBundle\Entity\skills",inversedBy="skill")
      */
     private $skills;
+
+
+    public function __construct($skills)
+    {
+        $this->skills = new ArrayCollection();
+    }
 
 
     /**
@@ -163,28 +171,32 @@ class Profil
         return $this->location;
     }
 
-    /**
-     * Set skills
-     *
-     * @param string $skills
-     *
-     * @return Profil
-     */
-    public function setSkills($skills)
-    {
-        $this->skills = $skills;
-    
-        return $this;
-    }
+
 
     /**
      * Get skills
      *
-     * @return string
+     * @return Collection|Skill[]
      */
-    public function getSkills()
+    public function getSkills(): Collection
     {
         return $this->skills;
     }
+
+    public function addSkill(Skill $skill): self
+    {
+        if (!$this->skills->contains($skill)) {
+            $this->skills[] = $skill;
+        }
+        return $this;
+    }
+    public function removeTag(Skill $skill): self
+    {
+        if ($this->skills->contains($skill)) {
+            $this->skills->removeElement($skill);
+        }
+        return $this;
+    }
+
 }
 

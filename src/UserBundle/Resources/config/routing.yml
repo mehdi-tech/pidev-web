@@ -1,3 +1,7 @@
+user_profil:
+    resource: "@UserBundle/Resources/config/routing/profil.yml"
+    prefix:   /profil
+
 user_homepage:
     path:     /
     defaults: { _controller: UserBundle:Default:index }
