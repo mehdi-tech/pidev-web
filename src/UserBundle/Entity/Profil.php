@@ -58,6 +58,12 @@ class Profil
      */
     private $skills;
 
+    /**
+     * @var
+     * @ORM\OneToOne(targetEntity="UserBundle\Entity\Users",inversedBy="profil")
+     */
+    private $user;
+
 
     public function __construct($skills)
     {

@@ -30,15 +30,14 @@ class ProfilController extends Controller
     public function indexOverViewAction()
     {
         $user = $this->container->get('security.token_storage')->getToken()->getUser();
-        $user->getId();
+        $user_id = $user->getId();
 
         $em = $this->getDoctrine()->getManager();
 
-        $profils = $em->getRepository('UserBundle:Profil')->findOneBy('user');
+        $profils = $em->getRepository('UserBundle:Profil')->findOneBy(array('user_id'=> $user_id));
+        dump($profils);
 
-        return $this->render('profil/index.html.twig', array(
-            'profils' => $profils,
-        ));
+        return $this->render('profil/overview/index.html.twig',array('user' => $user));
     }
 
     public function newOverviewAction(Request $request) {

@@ -110,7 +110,7 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         elseif (0 === strpos($pathinfo, '/profil')) {
             // profil_index
             if ('/profil' === $trimmedPathinfo) {
-                $ret = array (  '_controller' => 'UserBundle\\Controller\\ProfilController::indexAction',  '_route' => 'profil_index',);
+                $ret = array (  '_controller' => 'UserBundle\\Controller\\ProfilController::indexOverViewAction',  '_route' => 'profil_index',);
                 if ('/' === substr($pathinfo, -1)) {
                     // no-op
                 } elseif ('GET' !== $canonicalMethod) {
@@ -244,6 +244,11 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return $ret;
         }
         not_user_homepage:
+
+        // show
+        if ('/show' === $pathinfo) {
+            return array (  '_controller' => 'UserBundle\\Controller\\ProfilController::indexOverViewAction',  '_route' => 'show',);
+        }
 
         if (0 === strpos($pathinfo, '/re')) {
             // redirect_login

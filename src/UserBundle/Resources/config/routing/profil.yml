@@ -1,6 +1,6 @@
 profil_index:
     path:     /
-    defaults: { _controller: "UserBundle:Profil:index" }
+    defaults: { _controller: "UserBundle:Profil:indexOverView" }
     methods:  GET
 
 profil_show:
