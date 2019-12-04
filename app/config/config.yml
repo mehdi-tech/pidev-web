@@ -10,6 +10,7 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+    image_directory: '%kernel.project_dir%/web/images/users'
 
 framework:
     #esi: ~
@@ -85,3 +86,15 @@ fos_user:
     registration:
         form:
             type: UserBundle\Form\UsersType
+vich_uploader:
+    db_driver: orm # or mongodb or propel or phpcr
+    mappings:
+        profil_image:
+            uri_prefix: /uploads/images
+            upload_destination: '%kernel.project_dir%/web/uploads/images/'
+            inject_on_load: false
+            delete_on_update: true
+            delete_on_remove: true
+        resume_pdf:
+             uri_prefix: /uploads/documents
+             upload_destination: '%kernel.project_dir%/web/uploads/images/'

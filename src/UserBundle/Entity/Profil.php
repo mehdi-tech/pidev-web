@@ -37,6 +37,13 @@ class Profil
      */
     private $imageFile;
 
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @var \DateTime
+     */
+    private $updatedAt;
+
     public function setImageFile(File $image = null)
     {
         $this->imageFile = $image;
