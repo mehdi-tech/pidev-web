@@ -33,6 +33,11 @@ profil_edit:
     defaults: { _controller: "UserBundle:Profil:showEditOverview" }
     methods:  [GET, POST]
 
+location_edit:
+    path:     /location/{id}/edit
+    defaults: { _controller: "UserBundle:Profil:showEditLocation" }
+    methods:  [GET, POST]
+
 experience_edit:
     path:     /{id}/experience/edit
     defaults: { _controller: "UserBundle:Profil:showEditExperience" }

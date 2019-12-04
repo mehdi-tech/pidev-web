@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use UserBundle\Form\EducationType;
 use UserBundle\Form\ExperienceType;
+use UserBundle\Form\LocationType;
 use UserBundle\Form\OverviewType;
 
 /**
@@ -171,6 +172,25 @@ class ProfilController extends Controller
             return $this->redirectToRoute('profil_index');
         }
         return $this->render('@User/Default/overview/edit.html.twig',array('form' => $form->createView()));
+    }
+
+    function showEditLocationAction(Request $request,$id){
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('UserBundle:Profil')->find($id);
+
+        $form = $this->createForm(LocationType::class,$entity);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Product entity.');
+        }
+
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+
+            $em->flush();
+            return $this->redirectToRoute('profil_index');
+        }
+        return $this->render('@User/Default/location/edit.html.twig',array('form' => $form->createView()));
     }
 
     function showAddEducationAction(Request $request) {

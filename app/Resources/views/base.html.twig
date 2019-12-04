@@ -187,7 +187,7 @@
                 <div class="user-account">
                     <div class="user-info">
                         <img src="{{ asset('images/resources/user.png') }}" alt="">
-                        <a href="#" title="">John</a>
+                        <a href="#" title="">{{ app.user.username }}</a>
                         <i class="la la-sort-down"></i>
                     </div>
                     <div class="user-account-settingss" id="users">
@@ -224,7 +224,7 @@
                                             </div>
                                         </div><!--username-dt end-->
                                         <div class="user-specs">
-                                            <h3>John Doe</h3>
+                                            <h3>{{ app.user.username }}</h3>
                                             <span>Graphic Designer at Self Employed</span>
                                         </div>
                                     </div><!--user-profile end-->
@@ -238,7 +238,7 @@
                                             <span>155</span>
                                         </li>
                                         <li>
-                                            <a href="my-profile.html" title="">View Profile</a>
+                                            <a href="{{ path('profil_index') }}">View Profile</a>
                                         </li>
                                     </ul>
                                 </div><!--user-data end-->

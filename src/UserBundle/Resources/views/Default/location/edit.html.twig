@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block navbar %}{{ parent() }}{% endblock %}
+{% block main %}
+    <br><br><br><br><br><br><br>
+    <div class="container">
+
+            {{ form_start(form) }}
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Location</label>
+                    <br><br>
+                    {{ form_widget(form.location,{'attr':{'class':'form-control'}} ) }}
+                    {#<textarea name="overview" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>#}
+                </div>
+                {{ form_widget(form.save,{'attr':{'class':'btn btn-danger'}} ) }}
+                {#<button type="submit" class="btn btn-danger">Submit</button>#}
+            {{ form_end(form) }}
+
+    </div>
+{% endblock %}
+{% block postproject %} {% endblock %}
+{% block postjob %} {% endblock %}

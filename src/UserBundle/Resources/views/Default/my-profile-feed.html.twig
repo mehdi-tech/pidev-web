@@ -75,7 +75,7 @@
 											<div class="suggestion-usd">
 												<img src="{{ asset('images/resources/s2.png') }}" alt="">
 												<div class="sgt-text">
-													<h4>John Doe</h4>
+													<h4>{{ app.user.username }}</h4>
 													<span>PHP Developer</span>
 												</div>
 												<span><i class="la la-plus"></i></span>
@@ -107,7 +107,7 @@
 											<div class="suggestion-usd">
 												<img src="{{ asset('images/resources/s6.png') }}" alt="">
 												<div class="sgt-text">
-													<h4>John Doe</h4>
+													<h4>{{ app.user.username }}</h4>
 													<span>PHP Developer</span>
 												</div>
 												<span><i class="la la-plus"></i></span>
@@ -122,7 +122,7 @@
 							<div class="col-lg-6">
 								<div class="main-ws-sec">
 									<div class="user-tab-sec rewivew">
-										<h3>John Doe</h3>
+										<h3>{{ app.user.username }}</h3>
 										<div class="star-descp">
 											<span>Graphic Designer at Self Employed</span>
 											<ul>
@@ -556,7 +556,7 @@
 													<div class="usy-dt">
 														<img src="{{ asset('images/resources/us-pic.png') }}" alt="">
 														<div class="usy-name">
-														<h3>John Doe</h3>
+														<h3>{{ app.user.username }}</h3>
 														<div class="epi-sec epi2">
 													     <ul class="descp descptab bklink">
 														<li><img src="{{ asset('images/icon8.png') }}" alt=""><span>Epic Coder</span></li>
@@ -613,7 +613,7 @@
 
 														<img src="{{ asset('images/resources/Jassica.html') }}" alt="">
 														<div class="usy-name">
-														<h3>John Doe</h3>
+														<h3>{{ app.user.username }}</h3>
 														<div class="epi-sec epi2">
 													     <ul class="descp descptab bklink">
 														<li><img src="{{ asset('images/icon8.png') }}" alt=""><span>Epic Coder</span></li>
@@ -669,7 +669,7 @@
 													<div class="usy-dt">
 														<img src="{{ asset('images/resources/rock.jpg') }}" alt="">
 														<div class="usy-name">
-														<h3>John Doe</h3>
+														<h3>{{ app.user.username }}</h3>
 														<div class="epi-sec epi2">
 													     <ul class="descp descptab bklink">
 														<li><img src="{{ asset('images/icon8.png') }}" alt=""><span>Epic Coder</span></li>
@@ -746,9 +746,9 @@
                                             {% endfor %}
 										</div><!--user-profile-ov end-->
 										<div class="user-profile-ov">
-											<h3><a href="#" title="" class="lct-box-open">Location</a> <a href="#" title="" class="lct-box-open"><i class="fa fa-pencil"></i></a> <a href="#" title=""><i class="fa fa-plus-square"></i></a></h3>
-											<h4>India</h4>
-											<p>151/4 BT Chownk, Delhi </p>
+											<h3>Location<a href="{{ path('location_edit',{'id': profil.id}) }}"><i class="fa fa-pencil"></i></a></h3>
+											<h4>Tunisia</h4>
+											<p>{{ profil.location }} </p>
 										</div><!--user-profile-ov end-->
 										<div class="user-profile-ov">
 											<h3><a href="#" title="" class="skills-open">Skills</a> <a href="#" title="" class="skills-open"><i class="fa fa-pencil"></i></a> <a href="#"><i class="fa fa-plus-square"></i></a></h3>
@@ -809,7 +809,7 @@
 													<div class="usy-dt">
 														<img src="{{ asset('images/resources/bg-img4.png') }}" alt="">
 														<div class="usy-name">
-															<h3>John Doe</h3>
+															<h3>{{ app.user.username }}</h3>
 															<div class="epi-sec epi2">
 													   <p><i class="la la-clock-o"></i>3 min ago</p>													   
 													   <p class="tahnks">Thanks :)</p>
@@ -888,7 +888,7 @@
 													<div class="usy-dt">
 														<img src="{{ asset('images/resources/us-pic.png') }}" alt="">
 														<div class="usy-name">
-															<h3>John Doe</h3>
+															<h3>{{ app.user.username }}</h3>
 															<span><img src="{{ asset('images/clock.png') }}" alt="">3 min ago</span>
 														</div>
 													</div>
@@ -948,7 +948,7 @@
 													<div class="usy-dt">
 														<img src="{{ asset('images/resources/us-pic.png') }}" alt="">
 														<div class="usy-name">
-															<h3>John Doe</h3>
+															<h3>{{ app.user.username }}</h3>
 															<span><img src="{{ asset('images/clock.png') }}" alt="">3 min ago</span>
 														</div>
 													</div>
@@ -1008,7 +1008,7 @@
 													<div class="usy-dt">
 														<img src="{{ asset('images/resources/us-pic.png') }}" alt="">
 														<div class="usy-name">
-															<h3>John Doe</h3>
+															<h3>{{ app.user.username }}</h3>
 															<span><img src="{{ asset('images/clock.png') }}" alt="">3 min ago</span>
 														</div>
 													</div>
@@ -1068,7 +1068,7 @@
 													<div class="usy-dt">
 														<img src="{{ asset('images/resources/us-pic.png') }}" alt="">
 														<div class="usy-name">
-															<h3>John Doe</h3>
+															<h3>{{ app.user.username }}</h3>
 															<span><img src="{{ asset('images/clock.png') }}" alt="">3 min ago</span>
 														</div>
 													</div>

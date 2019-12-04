@@ -14,11 +14,12 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         $authChecker = $this->container->get('security.authorization_checker');
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
         if ($authChecker->isGranted('ROLE_ENTREPRISE')) {
             return $this->render('@User/Default/entreprisehome.html.twig');
         }
         else if ($authChecker->isGranted('ROLE_USER'))
-            return $this->render('@User/Default/userhome.html.twig');
+            return $this->render('@User/Default/userhome.html.twig',array('user' => $user));
         else {
         return $this->render('Default/index.html.twig');
     }
