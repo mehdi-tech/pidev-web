@@ -25,55 +25,55 @@ class Profil
         $this->education = new ArrayCollection();
         $this->skills = new ArrayCollection();
     }
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @var string
-     */
-    private $image;
+//    /**
+//     * @ORM\Column(type="string", length=255,nullable=true)
+//     * @var string
+//     */
+//    private $image;
+//
+//    /**
+//     * @Vich\UploadableField(mapping="profil_image", fileNameProperty="image",nullable=true)
+//     * @var File
+//     */
+//    private $imageFile;
+//
+//
+//    /**
+//     * @ORM\Column(type="datetime",nullable=true)
+//     * @var \DateTime
+//     */
+//    private $updatedAt;
+//
+//    public function setImageFile(File $image = null)
+//    {
+//        $this->imageFile = $image;
+//
+//        // VERY IMPORTANT:
+//        // It is required that at least one field changes if you are using Doctrine,
+//        // otherwise the event listeners won't be called and the file is lost
+//        if ($image) {
+//            // if 'updatedAt' is not defined in your entity, use another property
+//            $this->updatedAt = new \DateTime('now');
+//        }
+//    }
 
-    /**
-     * @Vich\UploadableField(mapping="profil_image", fileNameProperty="image")
-     * @var File
-     */
-    private $imageFile;
 
 
-    /**
-     * @ORM\Column(type="datetime")
-     * @var \DateTime
-     */
-    private $updatedAt;
-
-    public function setImageFile(File $image = null)
-    {
-        $this->imageFile = $image;
-
-        // VERY IMPORTANT:
-        // It is required that at least one field changes if you are using Doctrine,
-        // otherwise the event listeners won't be called and the file is lost
-        if ($image) {
-            // if 'updatedAt' is not defined in your entity, use another property
-            $this->updatedAt = new \DateTime('now');
-        }
-    }
-
-
-
-    /**
-     * @return mixed
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    /**
-     * @param mixed $image
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
-    }
+//    /**
+//     * @return mixed
+//     */
+//    public function getImage()
+//    {
+//        return $this->image;
+//    }
+//
+//    /**
+//     * @param mixed $image
+//     */
+//    public function setImage($image)
+//    {
+//        $this->image = $image;
+//    }
 
 
 
@@ -108,7 +108,7 @@ class Profil
     /**
      * @var string
      *
-     * @ORM\Column(name="location", type="string", length=255)
+     * @ORM\Column(name="location", type="string", length=255,nullable=true)
      */
     private $location;
 
@@ -123,6 +123,38 @@ class Profil
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
+
+//    /**
+//     * @return \DateTime
+//     */
+//    public function getUpdatedAt(): \DateTime
+//    {
+//        return $this->updatedAt;
+//    }
+//
+//    /**
+//     * @param \DateTime $updatedAt
+//     */
+//    public function setUpdatedAt(\DateTime $updatedAt)
+//    {
+//        $this->updatedAt = $updatedAt;
+//    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
 
 
 
